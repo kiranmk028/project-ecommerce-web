@@ -18,7 +18,9 @@ export function renderOrderSummary() {
         product = products.find((product) => product.id === cartItem.productId);
         let deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
         cartItemsHTML += `
-            <div class="cart-item-container js-cart-item-container-${cartItem.productId}">
+            <div class="cart-item-container 
+                js-cart-item-container
+                js-cart-item-container-${cartItem.productId}">
                 <div class="delivery-date">
                     Delivery date: ${getDeliveryDateString(deliveryOption)}
                 </div>
@@ -34,16 +36,18 @@ export function renderOrderSummary() {
                         <div class="product-price">
                             $${formatCurrency(product.priceCents)}
                         </div>
-                        <div class="product-quantity">
-                        <span>
-                            Quantity: <span class="quantity-label">${cartItem.quantity}</span>
-                        </span>
-                        <span class="update-quantity-link link-primary">
-                            Update
-                        </span>
-                        <span class="delete-quantity-link link-primary js-delete-cart-item" data-product-id="${cartItem.productId}">
-                            Delete
-                        </span>
+                        <div class="product-quantity js-product-quantity-${cartItem.productId}">
+                            <span>
+                                Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                            </span>
+                            <span class="update-quantity-link link-primary">
+                                Update
+                            </span>
+                            <span class="delete-quantity-link link-primary
+                                js-delete-cart-item js-delete-cart-item-${cartItem.productId}"
+                                data-product-id="${cartItem.productId}">
+                                Delete
+                            </span>
                         </div>
                     </div>
 

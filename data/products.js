@@ -56,26 +56,14 @@ class Cloth extends Product {
 
 export let products = [];
 
-export function loadProducts(callback) {
-  /**
-   * fetch() returns a promise.
-   */
-  return fetch('https://supersimplebackend.dev/products')
-    .then((response) => {
-      /**
-       * This will return a promise as well.
-       */
-      return response.json();
-    })
-    .then((responseData) => {
-      products = responseData.map((productDetail) => {
-        if (productDetail.type === 'clothing') {
-          return new Cloth(productDetail);
-        }
+export async function loadProducts() {
+  const reponse = await fetch('https://supersimplebackend.dev/products');
+  const responseData = await reponse.json();
+  products = responseData.map((productDetail) => {
+    if (productDetail.type === 'clothing') {
+      return new Cloth(productDetail);
+    }
 
-        return new Product(productDetail);
-      });
-    }).then(() => {
-      callback();
-    });
+    return new Product(productDetail);
+  });
 }
